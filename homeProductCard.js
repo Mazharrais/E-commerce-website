@@ -1,3 +1,4 @@
+import { homeQuantityToggle } from "./homeQuantityToggle";
 
 
 const productContainer = document.querySelector('#productContainer');
@@ -14,6 +15,8 @@ export const showProductContainer = (products) => {
         const {id,name,category,brand,price,stock,description,image} = curProd;
 
     const productClone = document.importNode(productTemplate.content,true);
+
+    productClone.querySelector("#cardValue").setAttribute('id', `card${id}`);
     productClone.querySelector('.category').textContent = category;
     productClone.querySelector('.productName').textContent = name;
     productClone.querySelector('.productImage').src = image;
@@ -24,9 +27,16 @@ export const showProductContainer = (products) => {
     productClone.querySelector('.productActualPrice').textContent = `PKR${price * 2}`;
 
 
+    productClone
+    .querySelector(".stockElement")
+    .addEventListener('click', (event)=>{
+     homeQuantityToggle(event, id, stock)
+    })
+
+
+
+
 
     productContainer.append(productClone);
-
-
     })
 }
