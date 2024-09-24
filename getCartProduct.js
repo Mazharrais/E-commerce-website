@@ -1,3 +1,4 @@
+import { updateCartValue } from "./updateCartValue";
 
 
 export const  getCartProductFromLs = ()=>{
@@ -8,6 +9,9 @@ if(!cartProducts){
 }
 
 cartProducts = JSON.parse(cartProducts);
-return cartProducts
+
+updateCartValue(cartProducts);
+
+return cartProducts;
 
 }
