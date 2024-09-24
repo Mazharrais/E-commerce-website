@@ -1,3 +1,4 @@
+import { addToCart } from "./addToCart";
 import { homeQuantityToggle } from "./homeQuantityToggle";
 
 
@@ -31,7 +32,13 @@ export const showProductContainer = (products) => {
     .querySelector(".stockElement")
     .addEventListener('click', (event)=>{
      homeQuantityToggle(event, id, stock)
-    })
+    });
+
+    productClone
+    .querySelector(".add-to-cart-button")
+    .addEventListener('click', (event)=>{
+     addToCart(event, id, stock)   
+    });
 
 
 
