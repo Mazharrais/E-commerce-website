@@ -22,13 +22,20 @@ const showCartProduct = () =>{
 
    let productClone = document.importNode(templateContainer.content,true);
 
+   let lSActualData = fetchQuantityFromCartLS(id, price)
+
    productClone.querySelector('#cardValue').setAttribute('id',`card${id}`);
    productClone.querySelector('.category').textContent = category;
    productClone.querySelector('.productName').textContent = name;
    productClone.querySelector('.productImage').src = image;
+
+//    productClone.querySelector('.stockElement').textContent = stock;
+//    productClone.querySelector('.productPrice').textContent = price;
 
    cartElement.appendChild(productClone);
 
 
     })
 }
+
+showCartProduct()
