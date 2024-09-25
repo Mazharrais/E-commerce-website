@@ -1,4 +1,5 @@
 import { getCartProductFromLs } from "./getCartProduct"
+import { updateCartProductTotal } from "./updateCartProductTotal";
 
 export const incrementDecrement = (event, id, stock, price)=>{
     
@@ -59,5 +60,7 @@ export const incrementDecrement = (event, id, stock, price)=>{
     productPrice.innerHTML = localStoragePrice;
 
 
+    updateCartProductTotal();
 
-}
+
+};
