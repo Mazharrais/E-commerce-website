@@ -9,9 +9,49 @@ export const incrementDecrement = (event, id, stock, price)=>{
 
 
     let quantity = 1;
-    let localStorage = 0;
+    let localStoragePrice = 0;
 
-    let localCartProducts = getCartProductFromLs();
+    let arrLocalStorageProduct = getCartProductFromLs();
 
+    let existingProd = arrLocalStorageProduct.find((curProd)=>curProd.id === id);
+
+    if(existingProd){
+        quantity = existingProd.quantity;
+        localStoragePrice = existingProd.price;
+    } else {
+        localStoragePrice = price;
+        price = price;
+    }
+
+    if(event.target.className === "cartIncrement") {
+
+        if(quantity < stock) {
+            quantity += 1;
+        }
+        else if(quantity === stock){
+            quantity = stock;
+            localStoragePrice = price * stock;
+        }
+    }
+
+    if(event.target.className === "cartDecrement"){
+        if(quantity > 1){
+            quantity -= 1;
+        }
+    }
+
+    localStoragePrice = price * quantity;
+
+    let updatedCart = {id, quantity, price : localStoragePrice};
+    updatedCart = arrLocalStorageProduct.map((curProd)=>{
+        
+        return curProd.id === id ? updatedCart : curProd;
+        
+     
+     
+     
+     
+    });
+    localStorage.setItem("cartProductLs", JSON.stringify(updatedCart));
 
 }
